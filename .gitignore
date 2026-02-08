@@ -1,0 +1,24 @@
+# Build folders - Derleme sırasında oluşan gereksiz dosyalar
+Debug/
+Release/
+bin/
+obj/
+
+# Local IDE settings - Senin kişisel ayarların (Başkasına lazım değil)
+.settings/
+.mxproject
+*.user
+*.bak
+
+# Debug configurations - Eski isimli veya yerel yol içeren ayarlar
+*.launch
+
+# Output files - Mikrodenetleyici çıktıları
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+
+# Log files
+*.log
