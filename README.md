@@ -61,5 +61,5 @@ Proje, **STM32CubeIDE** ortamında `HAL` kütüphaneleri kullanılarak geliştir
 ---
 
 **Geliştiren:** Yunus Kunduz  
-**Mühendislik Derslerine Ulaşmak İçin:** [CozumLab](https://www.youtube.com/@CozumLab)  
+**Mühendislik Derslerine Ulaşmak İçin:** [CozumLab](https://www.youtube.com/@CozumLabTR)  
 *Bu proje Gömülü Sistem Tasarımı dersi kapsamında mühendislik çözümü olarak üretilmiştir.*
