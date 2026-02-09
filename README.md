@@ -1,65 +1,65 @@
-# 🏟️ STM32 IoT Tabanlı Akıllı Skor Tablosu Projesi
+# 🏟️ STM32 IoT-Based Smart Scoreboard Project
 
-Bu proje, **STM32G030C8T6 (DemeDU Kit)** mikrodenetleyicisi kullanılarak geliştirilmiş; maç sürelerini, skorları ve çevre koşullarını takip eden, verileri anlık olarak **ThingSpeak** bulut platformuna aktaran kapsamlı bir gömülü sistem projesidir.
-
----
-
-## 🚀 Öne Çıkan Özellikler
-
-* **Hassas Kronometre:** `Timer3` kesmesi kullanılarak milisaniyelik doğrulukla 2 devreli maç süresi takibi.
-* **Akıllı Stadyum Işıkları:** `ADC` üzerinden okunan LDR verisi ile ortam karardığında otomatik yanan aydınlatma sistemi.
-* **İnteraktif Kontrol:** 3 adet buton (`EXTI` kesmesi) ile maç başlatma/durdurma, takım seçimi ve skor yönetimi.
-* **Gelişmiş Ses/Işık Geri Bildirimi:** * Gol anında özel "Gol Sesi" efekti.
-    * Maç sonunda hakem düdüğü simülasyonu.
-    * Maç başı ve sonu için RGB LED animasyon dizilimleri.
-* **IoT Entegrasyonu:** `UART` haberleşmesi üzerinden skor ve süre bilgilerinin buluta (ThingSpeak) aktarılması.
+This project is a comprehensive embedded system developed using the **STM32G030C8T6 (DemeDU Kit)**. It tracks match duration and scores, monitors environmental lighting, and streams real-time data to the **ThingSpeak** cloud platform.
 
 ---
 
-## 🛠️ Donanım Mimarisi
+## 🚀 Key Features
+
+* **High-Precision Stopwatch:** Utilizes `Timer3` interrupts for millisecond-accurate match timing across two halves.
+* **Smart Stadium Lighting:** Autonomous lighting control via `ADC` (LDR sensor) that activates LEDs when ambient light drops below a threshold.
+* **Interactive UI:** 3x user buttons configured with `EXTI` interrupts for Match Start/Pause, Team Selection, and Score Management.
+* **Audio-Visual Feedback:**
+    * Specialized "Goal Sound" frequency.
+    * Referee whistle simulation at the end of the match.
+    * RGB LED animation sequences for match starts and ends.
+* **IoT Connectivity:** Asynchronous data streaming of scores and time to ThingSpeak via `UART` communication.
+
+---
+
+## 🛠️ Hardware Architecture
 
 * **MCU:** STM32G030C8T6 (ARM® Cortex®-M0+)
-* **Haberleşme:** ESP8266 WiFi Modülü & USB-to-TTL Köprüsü
-* **Sensörler:** LDR (Işık Sensörü - ADC Kanal 5)
-* **Çıkışlar:** Buzzer, RGB LED, Çoklu Durum LED'leri
-* **Girişler:** 3x Push Button (Pull-up konfigürasyonu)
+* **Connectivity:** ESP8266 WiFi Module & USB-to-TTL Bridge
+* **Sensors:** LDR (Light Dependent Resistor - ADC Channel 5)
+* **Outputs:** Buzzer, RGB LED, and status indication LEDs
+* **Inputs:** 3x Push Buttons (Pull-up configuration)
 
 ---
 
-## 📡 IoT ve Bulut Veri Akışı
+## 📡 IoT & Cloud Data Workflow
 
-Proje, verileri ThingSpeak platformuna aktarmak için hibrit bir donanım yapılandırması kullanır:
+The system uses a hybrid hardware configuration for cloud integration:
 
-1. **Veri Paketleme:** STM32, güncel skoru ve süreyi `A:skor,B:skor,D:dk,S:sn` formatında paketler.
-2. **Haberleşme Köprüsü:** Kart üzerindeki mini jumperlar ESP bacaklarına yönlendirilir ve USB-to-TTL üzerinden ESP'ye veri aktarılır.
-3. **Bulut Aktarımı:** ESP modülü içerisindeki Arduino yazılımı, gelen veriyi yakalar ve WiFi üzerinden ThingSpeak API'sine gönderir.
+1. **Data Packaging:** STM32 packages live data as `A:score,B:score,D:min,S:sec`.
+2. **Communication Bridge:** Data is routed through on-board jumpers to the ESP8266 module via UART.
+3. **Cloud Streaming:** The ESP8266 (running Arduino firmware) connects to a local hotspot and pushes data to the ThingSpeak API.
 
 <p align="center">
-  <img src="./thingspeak_veriler.jpeg" width="700" title="ThingSpeak Veri Analizi">
+  <img src="./thingspeak_veriler.jpeg" width="700" title="ThingSpeak Data Analysis">
   <br>
-  <i>Görsel 1: ThingSpeak üzerinden anlık veri takibi ve skor analizi paneli</i>
+  <i>Figure 1: Real-time data tracking and score analysis panel on ThingSpeak</i>
 </p>
 
 ---
 
-## 💻 Yazılım Detayları
+## 💻 Software Implementation
 
-Proje, **STM32CubeIDE** ortamında `HAL` kütüphaneleri kullanılarak geliştirilmiştir.
+Developed in **STM32CubeIDE** using **HAL** libraries.
 
-* **Kesme (Interrupt) Yönetimi:** Buton arkı (debounce) engelleme algoritmaları ve zamanlayıcı kesmeleri senkronize çalışır.
-* **Güç Yönetimi:** Maç durduğunda veya bittiğinde donanım birimleri (LED/Buzzer) otomatik olarak düşük güç/bekleme moduna geçer.
-
----
-
-## 🔧 Kullanım Talimatları
-
-1. **Kod Yükleme:** Debugger portu üzerinden projeyi karta yükleyin.
-2. **Mod Değişimi:** Yükleme sonrası jumper ayarlarını ESP modülüne yönlendirin.
-3. **Ağ Bağlantısı:** ESP modülünün telefonunuzun internetine (Hotspot) bağlı olduğundan emin olun.
-4. **İzleme:** ThingSpeak kanalı üzerinden maç istatistiklerini anlık olarak görüntüleyin.
+* **Interrupt Management:** Synchronized execution of debounce-protected GPIO interrupts and periodic timer callbacks.
+* **Power Efficiency:** Automatic transition of peripherals (LEDs/Buzzer) to low-power states when the match is paused or finished.
 
 ---
 
-**Geliştiren:** Yunus Kunduz  
-**Mühendislik Derslerine Ulaşmak İçin:** [CozumLab](https://www.youtube.com/@CozumLabTR)  
-*Bu proje Gömülü Sistem Tasarımı dersi kapsamında mühendislik çözümü olarak üretilmiştir.*
+## 🔧 Setup & Usage
+
+1. **Flash Firmware:** Upload the project to the MCU via the Debugger port.
+2. **Jumper Configuration:** Set jumpers to route UART communication to the ESP module.
+3. **Network Setup:** Ensure the ESP8266 is configured to connect to your mobile hotspot.
+4. **Monitoring:** View live match statistics on your designated ThingSpeak channel.
+
+---
+
+**Developer:** Yunus Kunduz  
+**YouTube Channel:** [CozumLab](https://www.youtube.com/@CozumLabTR)
