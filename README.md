@@ -30,9 +30,15 @@ Bu proje, **STM32G030C8T6 (DemeDU Kit)** mikrodenetleyicisi kullanılarak geliş
 
 Proje, verileri ThingSpeak platformuna aktarmak için hibrit bir donanım yapılandırması kullanır:
 
-1.  **Veri Paketleme:** STM32, güncel skoru ve süreyi `A:skor,B:skor,D:dk,S:sn` formatında paketler.
-2.  **Haberleşme Köprüsü:** Kart üzerindeki mini jumperlar ESP bacaklarına yönlendirilir ve USB-to-TTL üzerinden ESP'ye veri aktarılır.
-3.  **Bulut Aktarımı:** ESP modülü içerisindeki Arduino yazılımı, gelen veriyi yakalar ve WiFi üzerinden ThingSpeak API'sine gönderir.
+1. **Veri Paketleme:** STM32, güncel skoru ve süreyi `A:skor,B:skor,D:dk,S:sn` formatında paketler.
+2. **Haberleşme Köprüsü:** Kart üzerindeki mini jumperlar ESP bacaklarına yönlendirilir ve USB-to-TTL üzerinden ESP'ye veri aktarılır.
+3. **Bulut Aktarımı:** ESP modülü içerisindeki Arduino yazılımı, gelen veriyi yakalar ve WiFi üzerinden ThingSpeak API'sine gönderir.
+
+<p align="center">
+  <img src="./thingspeak_veriler.jpeg" width="700" title="ThingSpeak Veri Analizi">
+  <br>
+  <i>Görsel 1: ThingSpeak üzerinden anlık veri takibi ve skor analizi paneli</i>
+</p>
 
 ---
 
@@ -47,12 +53,13 @@ Proje, **STM32CubeIDE** ortamında `HAL` kütüphaneleri kullanılarak geliştir
 
 ## 🔧 Kullanım Talimatları
 
-1.  **Kod Yükleme:** Debugger portu üzerinden projeyi karta yükleyin.
-2.  **Mod Değişimi:** Yükleme sonrası jumper ayarlarını ESP modülüne yönlendirin.
-3.  **Ağ Bağlantısı:** ESP modülünün telefonunuzun internetine (Hotspot) bağlı olduğundan emin olun.
-4.  **İzleme:** ThingSpeak kanalı üzerinden maç istatistiklerini anlık olarak görüntüleyin.
+1. **Kod Yükleme:** Debugger portu üzerinden projeyi karta yükleyin.
+2. **Mod Değişimi:** Yükleme sonrası jumper ayarlarını ESP modülüne yönlendirin.
+3. **Ağ Bağlantısı:** ESP modülünün telefonunuzun internetine (Hotspot) bağlı olduğundan emin olun.
+4. **İzleme:** ThingSpeak kanalı üzerinden maç istatistiklerini anlık olarak görüntüleyin.
 
 ---
 
-**Geliştiren:** Yunus Kunduz    
+**Geliştiren:** Yunus Kunduz  
+**Mühendislik Derslerine Ulaşmak İçin:** [CozumLab](https://www.youtube.com/@CozumLab)  
 *Bu proje Gömülü Sistem Tasarımı dersi kapsamında mühendislik çözümü olarak üretilmiştir.*
